@@ -12,5 +12,4 @@ model URLS{
   original_url  String  @unique
   expired_At    DateTime? @db.Timestamptz()
   created_At    DateTime  @default(now()) @db.Timestamptz()
-
 }
