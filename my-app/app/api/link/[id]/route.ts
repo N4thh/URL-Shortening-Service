@@ -3,8 +3,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 
 import { v4 as uuidv4 } from 'uuid';
-import geoip from "geoip-lite";
-import UAParser from "ua-parser-js";
+import { UAParser } from "ua-parser-js";
+
 export async function GET(req: NextRequest, context: {params: Promise<{id: string}>}) {
     try{
         const params = await context.params; 
@@ -34,8 +34,12 @@ export async function GET(req: NextRequest, context: {params: Promise<{id: strin
         //Get iP address
         const ip = req.headers.get("x-forwarded-for")?.split(",")[0] || 
                    req.headers.get("x-real-ip") || "unknown";
-        //contry
-        const country = geoip.lookup(ip)?.country;
+        
+        
+        const res = await fetch(`https://ipapi.co/${ip}/json/`);
+        const data = await res.json();
+        const country = data.country_name || "unknown";
+        const countryForDb = country === "unknown" ? null : String(country).slice(0, 5);
         //user-agent
         const uaString = req.headers.get("user-agent") || "";
         const parser = new UAParser(uaString);
@@ -49,7 +53,7 @@ export async function GET(req: NextRequest, context: {params: Promise<{id: strin
                 urlId: original.id,
                 deviceId: deviceid,
                 ip: ip, 
-                country: country,
+                country: countryForDb,
                 browser: browser, 
                 os: os, 
                 deviceType: deviceType
@@ -65,3 +69,4 @@ export async function GET(req: NextRequest, context: {params: Promise<{id: strin
         );
     }
 }
+
