@@ -4,6 +4,7 @@ generator client {
 
 datasource db {
   provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 model URLS{
@@ -12,4 +13,22 @@ model URLS{
   original_url  String  @unique
   expired_At    DateTime? @db.Timestamptz()
   created_At    DateTime  @default(now()) @db.Timestamptz()
+
+  visits       Visit[]
 }
+
+model Visit {
+  id          BigInt   @id @default(autoincrement())
+  urlId       BigInt
+  url         URLS     @relation(fields: [urlId], references: [id], onDelete: Cascade)
+  deviceId    String?  @db.VarChar(100)
+  ip          String?  @db.VarChar(45)
+  country     String?  @db.VarChar(5)
+
+  browser     String?  @db.VarChar(50)
+  os          String?  @db.VarChar(50)
+  deviceType  String?  @db.VarChar(20)
+
+  createdAt   DateTime @default(now())
+}
+  

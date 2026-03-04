@@ -5,7 +5,7 @@ export const isEmpty = (val: string | null | undefined): boolean => {
     return val.trim() === "";
 }
 
-const isPrivateIp = (hostname: string): boolean => {
+export const isPrivateIp = (hostname: string): boolean => {
     return (
         hostname.startsWith("10.") ||
         hostname.startsWith("192.168.") ||

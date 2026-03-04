@@ -4,7 +4,6 @@ import { badRequest, success } from "@/lib/helper/response";
 import { prisma } from "@/lib/prisma";
 import base62 from "base62";
 
-
 export async function POST(req: NextRequest) {
     try{
         const body = await req.json(); 
@@ -29,7 +28,6 @@ export async function POST(req: NextRequest) {
             });
             
             const shortLink =  base62.encode(Number(record.id)); 
-
             const update = await tx.uRLS.update({ 
                 where: {id: record.id}, 
                 data: {short_url: shortLink}
@@ -46,3 +44,4 @@ export async function POST(req: NextRequest) {
         );
     }
 }
+
