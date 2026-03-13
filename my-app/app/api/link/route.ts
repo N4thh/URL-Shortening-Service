@@ -17,7 +17,10 @@ export async function POST(req: NextRequest) {
             select: {short_url : true}
         });    
         if(existLink) 
-            return existLink;
+            return NextResponse.json({
+            message: "URL has found",
+            short_url: existLink.short_url
+        });
         
         const createShortLink = await prisma.$transaction(async (tx) => {
             const record = await tx.uRLS.create({ 
