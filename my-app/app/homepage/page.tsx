@@ -38,7 +38,7 @@ const HomePage = () => {
 
           const data = await res.json();
           if(!res.ok){ 
-              throw new Error(data.error || data.message || "Login failed")
+              throw new Error(data.error || data.message || "Create shorten failed")
           }
           const shortUrl = data.short_url;
           
@@ -55,8 +55,8 @@ const HomePage = () => {
         }
     }
   return (
-    <div className="space-y-10">
-      <div className="flex flex-col items-center space-y-5">
+    <div className="space-y-10 ">
+      <div className="flex flex-col justify-center items-center space-y-5">
         <p className="text-7xl font-semibold">Shorten your links</p> 
         <p className="text-xl text-gray-500">Create short, trackable links in seconds</p>
       </div>

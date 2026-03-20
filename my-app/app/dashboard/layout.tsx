@@ -9,13 +9,13 @@
                 <div className='flex justify-between items-center mx-40'>
                     <p className='text-2xl items-center '>Shortly</p>
             
-                    <Link href={"/dashboard"}
+                    <Link href={"/homepage"}
                     className='text-[#6d7482] hover:border-[#3eb489] rounded-xl hover:bg-[#3eb489] hover:text-[#474c53] px-3 py-2 transition'>
-                    View Dashboard</Link>
+                    Back To HomePage</Link>
                 </div>
             </header>
 
-            <main className="flex-1 flex items-center justify-center">
+            <main className="flex-1">
                 <div className="max-w-[92rem] mx-auto px-6 sm:px-6 md:px-20 py-10">
                 {children}
                 </div>
