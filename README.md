@@ -52,7 +52,8 @@ Follow the steps below to run this project locally.
 
 ``bash
 git clone https://github.com/N4thh/URL-Shortening-Service.git
-cd PersonalNote-api
+
+cd URL-Shortening-Service\my-app
 
 ### Install Dependencies
 npm install
