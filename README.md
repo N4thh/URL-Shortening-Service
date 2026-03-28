@@ -81,7 +81,7 @@ npm run dev
   <img src="./images/dashboard2.png" width="48%" />
 </p>
 
-### 📈 Analytics
+### Analytics
 
 <p>
   <img src="./images/analyticsBoard.png" width="48%" />
